@@ -1,10 +1,9 @@
-import Image from "next/image";
-import { fetchLatestNews } from "./actions";
+import { fetchNews } from "./actions";
 import Link from "next/link";
-import Spinner from "./Spinner";
+import LoadMoreNews from "./LoadMoreNews";
 
 export default async function Home() {
-  const { articles, totalResults } = await fetchLatestNews({
+  const { articles, totalResults } = await fetchNews({
     limit: 10,
     offset: 1,
   });
@@ -14,7 +13,7 @@ export default async function Home() {
       <h1 className="text-3xl mb-6 text-center font-semibold">
         Technology News
       </h1>
-      {articles?.map((news) => {
+      {articles?.map((news: { title: string; url: string }) => {
         return (
           <Link
             key={news.title}
@@ -29,7 +28,7 @@ export default async function Home() {
           </Link>
         );
       })}
-      <Spinner />
+      <LoadMoreNews />
     </section>
   );
 }
