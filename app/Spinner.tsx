@@ -43,17 +43,35 @@ const Spinner = () => {
   }, [isInView]);
 
   return (
-    <div ref={container} className="flex justify-center">
-      {canStillScroll ? (
-        <ClipLoader
-          color={"#444"}
-          loading={true}
-          size={40}
-          aria-label="Loading Spinner"
-        />
-      ) : (
-        ""
-      )}
+    <div>
+      {/* {data.news?.map((news) => {
+        return (
+          <Link
+            key={news.title}
+            href={news.url}
+            className="hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <article className="flex items-center bg-white p-4 mb-4 rounded shadow">
+              <h2>{news.title}</h2>
+            </article>
+          </Link>
+        );
+      })} */}
+
+      <div ref={container} className="flex justify-center">
+        {canStillScroll ? (
+          <ClipLoader
+            color={"#444"}
+            loading={true}
+            size={40}
+            aria-label="Loading Spinner"
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
