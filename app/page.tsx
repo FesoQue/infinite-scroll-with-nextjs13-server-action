@@ -10,7 +10,7 @@ export default async function Home() {
 
   return (
     <section className="max-w-4xl mx-auto">
-      <h1 className="text-3xl mb-6 text-center font-semibold">
+      <h1 className="text-3xl mb-10 text-center font-semibold">
         Technology News
       </h1>
       {articles?.map((news: { title: string; url: string }) => {

@@ -27,10 +27,10 @@ const LoadMoreNews = () => {
   const limit = 10;
   const totalOffset = Math.floor(totalResults / limit);
 
-  const lazyLoadContent = () => {
-    const offsetValue = Math.min(offset + 1, totalOffset);
-    setOffset(offsetValue);
-  };
+  // const lazyLoadContent = () => {
+  //   const offsetValue = Math.min(offset + 1, totalOffset);
+  //   setOffset((prev) => prev + 1);
+  // };
 
   useEffect(() => {
     if (isInView) {
@@ -43,10 +43,10 @@ const LoadMoreNews = () => {
           articles: [...prevData.articles, ...res.articles],
         }));
       });
-      // console.log(offset);
+      setOffset((prev) => prev + 1);
+      console.log(totalOffset);
     }
-    lazyLoadContent();
-  }, [isInView]);
+  }, [isInView, offset]);
 
   return (
     <div>
@@ -66,7 +66,7 @@ const LoadMoreNews = () => {
         );
       })}
 
-      {offset <= totalOffset && (
+      {offset < 6 && (
         <div ref={container} className="flex justify-center">
           <ClipLoader
             color={"#444"}
