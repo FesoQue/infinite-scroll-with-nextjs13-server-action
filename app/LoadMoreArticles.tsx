@@ -10,20 +10,20 @@ interface Article {
   url: string;
 }
 
-interface Data {
+interface DataType {
   total: number | null;
   articles: Article[] | [];
 }
-const LoadMoreNews = () => {
+const LoadMoreArticles = () => {
   const container = useRef<HTMLDivElement | null>(null);
   const { isInView } = useInView(container);
-  const [data, setData] = useState<Data>({
+  const [articleData, setArticleData] = useState<DataType>({
     total: null,
     articles: [],
   });
 
-  const offset = (data?.articles?.length + 20) / 10;
-  const remainder = (data?.total as number) % 2;
+  const offset = (articleData?.articles?.length + 20) / 10;
+  const remainder = (articleData?.total as number) % 2;
 
   useEffect(() => {
     if (isInView) {
@@ -31,7 +31,7 @@ const LoadMoreNews = () => {
         limit: 10,
         offset: offset,
       }).then((res) => {
-        setData((prevData) => ({
+        setArticleData((prevData) => ({
           total: res?.totalResults,
           articles: [...prevData.articles, ...res?.articles],
         }));
@@ -41,23 +41,24 @@ const LoadMoreNews = () => {
 
   return (
     <div>
-      {data.articles?.map((news) => {
+      {articleData.articles?.map((article) => {
         return (
           <Link
-            key={news.title}
-            href={news.url}
+            key={article.title}
+            href={article.url}
             className="hover:underline"
             target="_blank"
             rel="noopener noreferrer"
           >
             <article className="flex items-center bg-white p-4 mb-4 rounded shadow">
-              <h2>{news.title}</h2>
+              <h2>{article.title}</h2>
             </article>
           </Link>
         );
       })}
 
-      {data.articles?.length - remainder !== (data?.total as number) - 20 ? (
+      {articleData.articles?.length - remainder !==
+      (articleData?.total as number) - 20 ? (
         <div ref={container} className="flex justify-center">
           <ClipLoader
             color={"#444"}
@@ -73,4 +74,4 @@ const LoadMoreNews = () => {
   );
 };
 
-export default LoadMoreNews;
+export default LoadMoreArticles;
