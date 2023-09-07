@@ -23,7 +23,7 @@ const LoadMoreNews = () => {
   });
 
   const offset = (data?.articles?.length + 20) / 10;
-  const remainder = data?.total % 2;
+  const remainder = (data?.total as number) % 2;
 
   useEffect(() => {
     if (isInView) {
@@ -57,7 +57,7 @@ const LoadMoreNews = () => {
         );
       })}
 
-      {data.articles?.length - remainder !== data?.total - 20 ? (
+      {data.articles?.length - remainder !== (data?.total as number) - 20 ? (
         <div ref={container} className="flex justify-center">
           <ClipLoader
             color={"#444"}
