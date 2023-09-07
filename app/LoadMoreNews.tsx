@@ -21,16 +21,9 @@ const LoadMoreNews = () => {
     total: null,
     articles: [],
   });
-  const [offset, setOffset] = useState(1);
 
-  const totalResults = data?.total;
-  const limit = 10;
-  const totalOffset = Math.floor(totalResults / limit);
-
-  // const lazyLoadContent = () => {
-  //   const offsetValue = Math.min(offset + 1, totalOffset);
-  //   setOffset((prev) => prev + 1);
-  // };
+  const offset = (data?.articles?.length + 20) / 10;
+  const remainder = data?.total % 2;
 
   useEffect(() => {
     if (isInView) {
@@ -40,13 +33,11 @@ const LoadMoreNews = () => {
       }).then((res) => {
         setData((prevData) => ({
           total: res?.totalResults,
-          articles: [...prevData.articles, ...res.articles],
+          articles: [...prevData.articles, ...res?.articles],
         }));
       });
-      setOffset((prev) => prev + 1);
-      console.log(totalOffset);
     }
-  }, [isInView, offset]);
+  }, [isInView]);
 
   return (
     <div>
@@ -66,7 +57,7 @@ const LoadMoreNews = () => {
         );
       })}
 
-      {offset < 6 && (
+      {data.articles?.length - remainder !== data?.total - 20 ? (
         <div ref={container} className="flex justify-center">
           <ClipLoader
             color={"#444"}
@@ -75,6 +66,8 @@ const LoadMoreNews = () => {
             aria-label="Loading Spinner"
           />
         </div>
+      ) : (
+        ""
       )}
     </div>
   );
