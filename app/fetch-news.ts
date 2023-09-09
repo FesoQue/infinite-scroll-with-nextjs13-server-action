@@ -1,6 +1,12 @@
 "use server";
 
-export async function fetchNews({ limit, offset }) {
+export async function fetchNews({
+  limit,
+  offset,
+}: {
+  limit: number;
+  offset: number;
+}) {
   const res = await fetch(
     `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=${limit}&page=${offset}&apiKey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
