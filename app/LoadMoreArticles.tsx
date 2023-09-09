@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import useInView from "./useInView";
-import { fetchNews } from "./actions";
+import { fetchNews } from "./fetch-news";
 import Link from "next/link";
 
 interface Article {

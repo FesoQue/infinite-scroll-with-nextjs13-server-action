@@ -1,5 +1,5 @@
 import LoadMoreArticles from "./LoadMoreArticles";
-import { fetchNews } from "./actions";
+import { fetchNews } from "./fetch-news";
 import Link from "next/link";
 
 export default async function Home() {
