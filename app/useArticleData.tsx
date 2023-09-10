@@ -1,8 +1,7 @@
-import React from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchNews } from "./fetch-news";
 
-const useIQ = () => {
+const useArticleData = () => {
   const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
       ["article"],
@@ -18,4 +17,4 @@ const useIQ = () => {
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage };
 };
 
-export default useIQ;
+export default useArticleData;
