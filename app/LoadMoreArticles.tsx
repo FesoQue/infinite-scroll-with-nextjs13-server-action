@@ -41,10 +41,10 @@ const LoadMoreArticles = () => {
 
   return (
     <div>
-      {articleData.articles?.map((article) => {
+      {articleData.articles?.map((article, i) => {
         return (
           <Link
-            key={article.title}
+            key={i}
             href={article.url}
             className="hover:underline"
             target="_blank"

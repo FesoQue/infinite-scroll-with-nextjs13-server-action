@@ -13,10 +13,10 @@ export default async function Home() {
       <h1 className="text-3xl mb-10 text-center font-semibold">
         Technology News
       </h1>
-      {articles?.map((article: { title: string; url: string }) => {
+      {articles?.map((article: { title: string; url: string }, i: number) => {
         return (
           <Link
-            key={article.title}
+            key={i}
             href={article.url}
             className="hover:underline"
             target="_blank"
