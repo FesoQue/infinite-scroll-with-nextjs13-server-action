@@ -13,11 +13,10 @@ interface ArticleType {
 const LoadMore = () => {
   const container = useRef<HTMLDivElement | null>(null);
   const { isInView } = useInView(container);
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useArticleData();
+  const { data, fetchNextPage, hasNextPage } = useArticleData();
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && hasNextPage) {
       fetchNextPage();
     }
   }, [isInView, hasNextPage]);
@@ -25,10 +24,10 @@ const LoadMore = () => {
   return (
     <div>
       {data?.pages?.map((page) => {
-        return page.articles.map((article: ArticleType) => {
+        return page.articles.map((article: ArticleType, i: number) => {
           return (
             <Link
-              key={article.title}
+              key={i}
               href={article.url}
               className="hover:underline"
               target="_blank"

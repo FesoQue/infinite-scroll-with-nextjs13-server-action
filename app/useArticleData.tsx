@@ -5,7 +5,7 @@ const useArticleData = () => {
   const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
       ["article"],
-      async ({ pageParam = 1 }) => await fetchNews(pageParam),
+      async ({ pageParam: offset = 1 }) => await fetchNews(offset),
       {
         getNextPageParam: (lastPage, allPages) => {
           const nextPage =

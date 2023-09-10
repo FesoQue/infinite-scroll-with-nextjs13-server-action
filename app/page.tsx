@@ -19,10 +19,10 @@ export default function Home() {
           Technology News
         </h1>
         {data?.pages?.map((page) => {
-          return page.articles.map((article: ArticleType) => {
+          return page.articles.map((article: ArticleType, i: number) => {
             return (
               <Link
-                key={article.title}
+                key={i}
                 href={article.url}
                 className="hover:underline"
                 target="_blank"

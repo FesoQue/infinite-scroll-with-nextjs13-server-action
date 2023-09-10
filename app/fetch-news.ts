@@ -1,7 +1,7 @@
 "use server";
-export async function fetchNews(pageParam: number) {
+export async function fetchNews(offset: number) {
   const res = await fetch(
-    `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=10&page=${pageParam}&apiKey=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=10&page=${offset}&apiKey=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
