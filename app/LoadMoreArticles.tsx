@@ -40,18 +40,18 @@ const LoadMore = () => {
           );
         });
       })}
-      {hasNextPage ? (
-        <div ref={container} className="flex justify-center">
-          <ClipLoader
-            color={"#444"}
-            loading={true}
-            size={40}
-            aria-label="Loading Spinner"
-          />
-        </div>
-      ) : (
-        ""
-      )}
+      <div
+        ref={container}
+        className="justify-center"
+        style={{ display: hasNextPage ? "flex" : "none" }}
+      >
+        <ClipLoader
+          color={"#444"}
+          loading={true}
+          size={40}
+          aria-label="Loading Spinner"
+        />
+      </div>
     </div>
   );
 };
